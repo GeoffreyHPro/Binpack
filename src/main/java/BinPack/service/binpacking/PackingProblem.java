@@ -8,7 +8,7 @@ public class PackingProblem {
     public PackingProblem(int listWeightObjects[], int capacityPack, int numberPacks) {
         this.capacityPack = capacityPack;
         this.numberPacks = numberPacks;
-        this.numberPacks = numberPacks;
+        this.listWeightObjects = listWeightObjects;
     }
 
     public int getCapacityPack() {
@@ -34,5 +34,4 @@ public class PackingProblem {
     public void setNumberPacks(int numberPacks) {
         this.numberPacks = numberPacks;
     }
-
 }
