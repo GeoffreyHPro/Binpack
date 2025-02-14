@@ -17,7 +17,7 @@ public class PackingCertificate {
     }
 
     public int[] lastCertificate() {
-        int[] certificate = new int[packingProblem.getNumberPacks()];
+        int[] certificate = new int[packingProblem.getListWeightObjects().length];
         return Arrays.stream(certificate).map(x -> packingProblem.getNumberPacks() - 1).toArray();
     }
 
@@ -25,7 +25,7 @@ public class PackingCertificate {
         if (certificate.length != packingProblem.getListWeightObjects().length) {
             return false;
         }
-        int[] listWeigthPacks = ProblemAndCertificateToListWeigthPacks(certificate);
+        int[] listWeigthPacks = problemAndCertificateToListWeigthPacks(certificate);
 
         boolean anyPackExceedsCapacity = Arrays.stream(listWeigthPacks)
                 .anyMatch(x -> x > packingProblem.getCapacityPack());
@@ -33,10 +33,14 @@ public class PackingCertificate {
         return !anyPackExceedsCapacity;
     }
 
-    private int[] ProblemAndCertificateToListWeigthPacks(int[] certificate) {
-        int[] listWeightPacks = new int[certificate.length];
-        return Arrays.stream(certificate)
-                .map(x -> listWeightPacks[x] += packingProblem.getListWeightObjects()[x]).toArray();
+    public int[] problemAndCertificateToListWeigthPacks(int[] certificate) {
+        int[] listWeightPacks = new int[packingProblem.getNumberPacks()];
+
+        for (int i = 0; i < certificate.length; i++) {
+            listWeightPacks[certificate[i]] += packingProblem.getListWeightObjects()[i];
+        }
+
+        return listWeightPacks;
     }
 
     public int[] nextCertificate(int[] certificate) throws NoSolutionException {
