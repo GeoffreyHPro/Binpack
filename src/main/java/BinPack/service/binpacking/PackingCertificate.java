@@ -18,4 +18,20 @@ public class PackingCertificate {
         int[] certificate = new int[packingProblem.getNumberPacks()];
         return Arrays.stream(certificate).map(x -> packingProblem.getNumberPacks() - 1).toArray();
     }
+
+    public boolean certificateIsSolution(int[] certificat) {
+        if (certificat.length != packingProblem.getListWeightObjects().length) {
+            return false;
+        }
+        int[] listWeigthPacks = ProblemAndCertificateToListWeigthPacks(certificat);
+        boolean anyPackExceedsCapacity = Arrays.stream(listWeigthPacks).anyMatch(x -> x > packingProblem.getCapacityPack());
+
+        return !anyPackExceedsCapacity;
+    }
+
+    public int[] ProblemAndCertificateToListWeigthPacks(int[] certificat) {
+        int[] listWeightPacks = new int[certificat.length];
+        return Arrays.stream(certificat)
+                .map(x -> listWeightPacks[x] = packingProblem.getListWeightObjects()[x]).toArray();
+    }
 }
