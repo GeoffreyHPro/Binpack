@@ -15,3 +15,5 @@ BinPack API REST project. I work on refactor of my University project for BinPac
 cd back
 mvn spring-boot:run
 ```
+
+URL of Swagger: http://localhost:8080/swagger-ui/index.html
