@@ -37,6 +37,20 @@ public class PackingCertificateTest {
     }
 
     @Test
+    public void testCompareLastCertificateTwo() {
+        int[] rigthCertificate = { 1, 1, 1 };
+        int[] wrongCertificate = { 0, 0, 0 };
+
+        PackingProblem packingProblem = new PackingProblem(new int[3], 2, 2);
+        PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
+
+        Arrays.stream(packingCertificate.lastCertificate()).forEach(System.out::println);
+
+        assertTrue(Arrays.equals(packingCertificate.lastCertificate(), rigthCertificate));
+        assertFalse(Arrays.equals(packingCertificate.lastCertificate(), wrongCertificate));
+    }
+
+    @Test
     public void testCertificateIsSolution() {
         int[] certificateIsSolution = { 0, 0, 1 };
         int[] certificateIsSolutionTwo = { 1, 0, 0 };
@@ -80,6 +94,8 @@ public class PackingCertificateTest {
         int[] validCertificate = packingCertificate.exhaustiveSearch();
 
         assertTrue(Arrays.equals(validCertificate, firstCertificate));
+
+        
     }
 
     @Test
