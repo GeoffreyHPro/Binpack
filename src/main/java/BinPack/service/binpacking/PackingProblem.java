@@ -1,5 +1,7 @@
 package BinPack.service.binpacking;
 
+import java.util.Arrays;
+
 public class PackingProblem {
     private int listWeightObjects[];
     private int capacityPack;
@@ -33,5 +35,20 @@ public class PackingProblem {
 
     public void setNumberPacks(int numberPacks) {
         this.numberPacks = numberPacks;
+    }
+
+    public boolean hasSolution() {
+        boolean exceedsPacksCapacity;
+        int[] getListWeightObjects = getListWeightObjects();
+
+        int totalWeight = Arrays.stream(getListWeightObjects)
+                .sum();
+        exceedsPacksCapacity = totalWeight <= getNumberPacks()
+                * getCapacityPack();
+
+        boolean exceedsCapacity = Arrays.stream(getListWeightObjects)
+                .anyMatch(x -> x > getCapacityPack());
+
+        return exceedsPacksCapacity && !exceedsCapacity;
     }
 }
