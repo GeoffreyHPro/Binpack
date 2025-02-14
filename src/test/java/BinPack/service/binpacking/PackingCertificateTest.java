@@ -53,7 +53,7 @@ public class PackingCertificateTest {
     @Test
     public void testCertificateIsSolution() {
         int[] certificateIsSolution = { 0, 0, 1 };
-        int[] certificateIsSolutionTwo = { 1, 0, 0 };
+        int[] certificateIsSolutionTwo = { 1, 1, 0 };
         int[] certificateWrong = { 0, 0, 0 };
 
         int[] listWeightPacks = { 1, 1, 2 };
@@ -95,7 +95,6 @@ public class PackingCertificateTest {
 
         assertTrue(Arrays.equals(validCertificate, firstCertificate));
 
-        
     }
 
     @Test
