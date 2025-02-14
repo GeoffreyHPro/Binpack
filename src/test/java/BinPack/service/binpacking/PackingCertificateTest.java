@@ -68,4 +68,16 @@ public class PackingCertificateTest {
 
         assertTrue(Arrays.equals(expectedNextCertificateTwo, nextCertificateValue));
     }
+
+    @Test
+    public void testFoundValidCertificate() throws NoSolutionException {
+        int[] listWeightPacks = { 1, 1, 2 };
+        int[] firstCertificate = { 0, 0, 1 };
+
+        PackingProblem packingProblem = new PackingProblem(listWeightPacks, 2, 2);
+        PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
+        int[] validCertificate = packingCertificate.exhaustiveSearch();
+
+        assertTrue(Arrays.equals(validCertificate, firstCertificate));
+    }
 }
