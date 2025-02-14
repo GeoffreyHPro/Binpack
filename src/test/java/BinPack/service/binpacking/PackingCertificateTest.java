@@ -7,6 +7,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import BinPack.exception.NoSolutionException;
+
 public class PackingCertificateTest {
 
     @Test
@@ -47,5 +49,23 @@ public class PackingCertificateTest {
         assertTrue(packingCertificate.certificateIsSolution(certificateIsSolution));
         assertTrue(packingCertificate.certificateIsSolution(certificateIsSolutionTwo));
         assertFalse(packingCertificate.certificateIsSolution(certificateWrong));
+    }
+
+    @Test
+    public void testNextCertificate() throws NoSolutionException {
+        int[] currentCertificate = { 0, 0, 0 };
+        int[] expectedNextCertificateOne = { 0, 0, 1 };
+        int[] expectedNextCertificateTwo = { 0, 1, 0 };
+
+        int[] listWeightPacks = { 1, 1, 2 };
+
+        PackingProblem packingProblem = new PackingProblem(listWeightPacks, 2, 2);
+        PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
+        int[] nextCertificateValue = packingCertificate.nextCertificate(currentCertificate);
+
+        assertTrue(Arrays.equals(expectedNextCertificateOne, nextCertificateValue));
+        nextCertificateValue = packingCertificate.nextCertificate(currentCertificate);
+
+        assertTrue(Arrays.equals(expectedNextCertificateTwo, nextCertificateValue));
     }
 }
