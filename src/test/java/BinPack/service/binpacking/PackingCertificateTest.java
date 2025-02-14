@@ -11,25 +11,41 @@ public class PackingCertificateTest {
 
     @Test
     public void testCompareFirstCertificate() {
-        int[] certificateSuccess = new int[2];
-        int[] certificateWrong = new int[3];
+        int[] rigthCertificate = new int[2];
+        int[] wrongCertificate = new int[3];
 
         PackingProblem packingProblem = new PackingProblem(new int[2], 1, 2);
         PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
 
-        assertTrue(Arrays.equals(packingCertificate.firstCertificate(), certificateSuccess));
-        assertFalse(Arrays.equals(packingCertificate.firstCertificate(), certificateWrong));
+        assertTrue(Arrays.equals(packingCertificate.firstCertificate(), rigthCertificate));
+        assertFalse(Arrays.equals(packingCertificate.firstCertificate(), wrongCertificate));
     }
 
     @Test
     public void testCompareLastCertificate() {
-        int[] certificateSuccess = { 1, 1 };
-        int[] certificateWrong = { 0, 0 };
+        int[] rigthCertificate = { 1, 1 };
+        int[] wrongCertificate = { 0, 0 };
 
         PackingProblem packingProblem = new PackingProblem(new int[2], 1, 2);
         PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
 
-        assertTrue(Arrays.equals(packingCertificate.lastCertificate(), certificateSuccess));
-        assertFalse(Arrays.equals(packingCertificate.lastCertificate(), certificateWrong));
+        assertTrue(Arrays.equals(packingCertificate.lastCertificate(), rigthCertificate));
+        assertFalse(Arrays.equals(packingCertificate.lastCertificate(), wrongCertificate));
+    }
+
+    @Test
+    public void testCertificateIsSolution() {
+        int[] certificateIsSolution = { 0, 0, 1 };
+        int[] certificateIsSolutionTwo = { 1, 0, 0 };
+        int[] certificateWrong = { 0, 0, 0 };
+
+        int[] listWeightPacks = { 1, 1, 2 };
+
+        PackingProblem packingProblem = new PackingProblem(listWeightPacks, 2, 2);
+        PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
+
+        assertTrue(packingCertificate.certificateIsSolution(certificateIsSolution));
+        assertTrue(packingCertificate.certificateIsSolution(certificateIsSolutionTwo));
+        assertFalse(packingCertificate.certificateIsSolution(certificateWrong));
     }
 }

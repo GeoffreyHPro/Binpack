@@ -19,19 +19,21 @@ public class PackingCertificate {
         return Arrays.stream(certificate).map(x -> packingProblem.getNumberPacks() - 1).toArray();
     }
 
-    public boolean certificateIsSolution(int[] certificat) {
-        if (certificat.length != packingProblem.getListWeightObjects().length) {
+    public boolean certificateIsSolution(int[] certificate) {
+        if (certificate.length != packingProblem.getListWeightObjects().length) {
             return false;
         }
-        int[] listWeigthPacks = ProblemAndCertificateToListWeigthPacks(certificat);
-        boolean anyPackExceedsCapacity = Arrays.stream(listWeigthPacks).anyMatch(x -> x > packingProblem.getCapacityPack());
+        int[] listWeigthPacks = ProblemAndCertificateToListWeigthPacks(certificate);
+
+        boolean anyPackExceedsCapacity = Arrays.stream(listWeigthPacks)
+                .anyMatch(x -> x > packingProblem.getCapacityPack());
 
         return !anyPackExceedsCapacity;
     }
 
-    public int[] ProblemAndCertificateToListWeigthPacks(int[] certificat) {
-        int[] listWeightPacks = new int[certificat.length];
-        return Arrays.stream(certificat)
-                .map(x -> listWeightPacks[x] = packingProblem.getListWeightObjects()[x]).toArray();
+    private int[] ProblemAndCertificateToListWeigthPacks(int[] certificate) {
+        int[] listWeightPacks = new int[certificate.length];
+        return Arrays.stream(certificate)
+                .map(x -> listWeightPacks[x] += packingProblem.getListWeightObjects()[x]).toArray();
     }
 }
