@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class PackingCertificateTest {
 
     @Test
-    public void testCompareCertificate() {
+    public void testCompareFirstCertificate() {
         int[] certificateSuccess = new int[2];
         int[] certificateWrong = new int[3];
 
@@ -19,5 +19,17 @@ public class PackingCertificateTest {
 
         assertTrue(Arrays.equals(packingCertificate.firstCertificate(), certificateSuccess));
         assertFalse(Arrays.equals(packingCertificate.firstCertificate(), certificateWrong));
+    }
+
+    @Test
+    public void testCompareLastCertificate() {
+        int[] certificateSuccess = { 1, 1 };
+        int[] certificateWrong = { 0, 0 };
+
+        PackingProblem packingProblem = new PackingProblem(new int[2], 1, 2);
+        PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
+
+        assertTrue(Arrays.equals(packingCertificate.lastCertificate(), certificateSuccess));
+        assertFalse(Arrays.equals(packingCertificate.lastCertificate(), certificateWrong));
     }
 }
