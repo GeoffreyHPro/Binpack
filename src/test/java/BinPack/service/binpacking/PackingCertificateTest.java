@@ -1,6 +1,7 @@
 package BinPack.service.binpacking;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -79,5 +80,16 @@ public class PackingCertificateTest {
         int[] validCertificate = packingCertificate.exhaustiveSearch();
 
         assertTrue(Arrays.equals(validCertificate, firstCertificate));
+    }
+
+    @Test
+    public void testFoundValidCertificateThrowException() {
+        assertThrows(NoSolutionException.class, () -> {
+            int[] listWeightPacks = { 1, 1, 2 };
+
+            PackingProblem packingProblem = new PackingProblem(listWeightPacks, 1, 2);
+            PackingCertificate packingCertificate = new PackingCertificate(packingProblem);
+            packingCertificate.exhaustiveSearch();
+        });
     }
 }
