@@ -2,7 +2,7 @@
 
 BinPack API REST project. I work on refactor of my University project for BinPack problem.
 
-## # 👩‍💻 Technologies
+# 👩‍💻 Technologies
 
 | Back - Spring Boot | version (works) | 
 | --- | --- |
