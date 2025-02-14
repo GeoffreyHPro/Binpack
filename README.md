@@ -31,7 +31,7 @@ URL of Swagger: http://localhost:8080/swagger-ui/index.html
 
 | parameterName | value |
 | --- | --- |
-| list of object weight | |
+| list of object weight | [ 2 , 1 , 1 , 1 , 2 ] |
 | number of packs | 3 |
 | capacity for each pack | 3 |
 <br>
