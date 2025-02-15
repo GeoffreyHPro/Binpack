@@ -68,6 +68,9 @@ public class PackingCertificate {
             }
             currentCertificate = nextCertificate(currentCertificate);
         }
+        if (certificateIsSolution(currentCertificate)) {
+            return currentCertificate;
+        }
         throw new NoSolutionException();
     }
 }
