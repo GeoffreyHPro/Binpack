@@ -17,6 +17,20 @@ mvn spring-boot:run
 
 URL of Swagger: http://localhost:8080/swagger-ui/index.html
 
+# ☁️ Docker Execution
+
+To create image Docker, execute this command
+
+```bash
+docker build -t binpack .  
+```
+
+To execute application, execute this command. 8080:8080 is port and default port, so change it if you execute application in another port.
+
+```bash
+docker run -p 8080:8080 binpack
+```
+
 # 👁️ Preview of project
 
 ### Swagger
